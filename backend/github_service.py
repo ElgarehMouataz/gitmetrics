@@ -21,6 +21,7 @@ def get_github_stats(username: str):
             "name": repo.get("name"),
             "stars": repo.get("stargazers_count", 0),
             "forks": repo.get("forks_count", 0),
+            "watchers": repo.get("watchers_count", 0),
             "language": repo.get("language") or "None",
             "url": repo.get("html_url"),
         })
