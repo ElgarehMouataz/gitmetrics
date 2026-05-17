@@ -2,9 +2,9 @@ import responses
 from github_service import get_github_stats
 
 @responses.activate
-async def test_get_github_stats_success():
+def test_get_github_stats_success():
     username="testuser"
-    url = f"https://api.github.com/users/{username}/repos"  
+    url = f"https://api.github.com/users/{username}/repos"
     responses.add(
         responses.GET,
         url,
@@ -24,12 +24,6 @@ async def test_get_github_stats_success():
         ],
         status=200
     )
-    responses.add(
-        responses.GET,
-        url,
-        json={"message": "Not Found"},
-        status=404,
-    )
 
     stats = get_github_stats(username)
 
@@ -42,7 +36,7 @@ async def test_get_github_stats_success():
 
 
 @responses.activate
-async def test_get_github_stats_not_found():
+def test_get_github_stats_not_found():
     username = "missinguser"
     url = f"https://api.github.com/users/{username}/repos"
     responses.add(
